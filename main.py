@@ -5,7 +5,7 @@ import sys
 import time
 
 # Import classes
-import Snake as snake_class
+from snake_class import Snake
 
 # Pygame configuration
 pygame.init()
@@ -17,8 +17,8 @@ window = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 
 # Snake
-snake = snake_class.Snake((16, 16), [124, 124])
-snake.show()
+snake = Snake((16, 16), [124, 124])
+
 
 # Game loop
 while True:
@@ -26,9 +26,22 @@ while True:
     if event.type == pygame.QUIT:
       pygame.quit()
       sys.exit()
+    if event.type == pygame.KEYDOWN:
+        #if snake.direction != 'down':
+        if event.key == pygame.K_UP:
+          snake.direction = 'up'
+        #if snake.direction != 'left':
+        if event.key == pygame.K_RIGHT:
+          snake.direction = 'right'
+        #if snake.direction != 'up':
+        if event.key == pygame.K_DOWN:
+          snake.direction = 'down'
+        #if snake.direction != 'right':
+        if event.key == pygame.K_LEFT:
+          snake.direction = 'left'
 
-    snake.move()
-  print(snake.direction)
+  snake.move()
+  snake.show()
   clock.tick(60)
 
   # Show graphics

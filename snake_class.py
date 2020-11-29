@@ -12,21 +12,6 @@ class Snake():
   def show(self):
     self.surface.fill(self.color)
   def move(self):
-    for event in pygame.event.get():
-      if event.type == pygame.KEYDOWN:
-        print('a')
-        #if self.direction != 'down':
-        if event.key == pygame.K_UP:
-          self.direction = 'up'
-        #if self.direction != 'left':
-        if event.key == pygame.K_RIGHT:
-          self.direction = 'right'
-        #if self.direction != 'up':
-        if event.key == pygame.K_DOWN:
-          self.direction = 'down'
-        #if self.direction != 'right':
-        if event.key == pygame.K_LEFT:
-          self.direction = 'left'
     # Input logic
     if self.direction == 'up':
       self.pos[1] -= self.speed
