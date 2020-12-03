@@ -32,16 +32,40 @@ while True:
       if event.key == pygame.K_LEFT:
         direction = 3
   # Direction check
-  if direction == 0:
-    snake[0] = (snake[0][0], snake[0][1] - snake_spd)
-  elif direction == 1:
-    snake[0] = (snake[0][0] + snake_spd, snake[0][1])
-  elif direction == 2:
-    snake[0] = (snake[0][0], snake[0][1] + snake_spd)
-  elif direction == 3:
-    snake[0] = (snake[0][0] - snake_spd, snake[0][1])
+  if len(snake) != 1:
+    if direction != 2:
+      if direction == 0:
+        snake[0] = (snake[0][0], snake[0][1] - snake_spd)
+    if direction != 3:
+      if direction == 1:
+        snake[0] = (snake[0][0] + snake_spd, snake[0][1])
+    if direction != 0:
+      if direction == 2:
+        snake[0] = (snake[0][0], snake[0][1] + snake_spd)
+    if direction != 1:
+      if direction == 3:
+        snake[0] = (snake[0][0] - snake_spd, snake[0][1])
+  elif len(snake) > 1:
+    if direction == 0:
+      snake[0] = (snake[0][0], snake[0][1] - snake_spd)
+    if direction == 1:
+      snake[0] = (snake[0][0] + snake_spd, snake[0][1])
+    if direction == 2:
+      snake[0] = (snake[0][0], snake[0][1] + snake_spd)
+    if direction == 3:
+      snake[0] = (snake[0][0] - snake_spd, snake[0][1])
   for i in range(len(snake) - 1, 0, -1):
     snake[i] = (snake[i - 1][0], snake[i - 1][1])
+
+  # Come to window again
+  if snake[len(snake) - 1][1] > window_size[1]:
+    snake[0] = (snake[0][0], 0)
+  if snake[len(snake) - 1][0] > window_size[0]:
+    snake[0] = (0, snake[0][1])
+  if snake[len(snake) - 1][1] < 0:
+    snake[0] = (snake[0][0], window_size[1])
+  if snake[len(snake) - 1][0] < 0:
+    snake[0] = (window_size[0], snake[0][1])
   # Draw
   window.fill((255, 255, 255))
   for pos in snake:
